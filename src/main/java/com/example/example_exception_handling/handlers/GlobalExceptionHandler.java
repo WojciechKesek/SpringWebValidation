@@ -5,20 +5,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value
             = NoSuchCustomerExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public @ResponseBody ErrorResponse handleException(NoSuchCustomerExistsException ex) {
+    public ErrorResponse handleException(NoSuchCustomerExistsException ex) {
         return new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(), ex.getMessage());
     }
     @ExceptionHandler(value
             = MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
-    public @ResponseBody ErrorResponse handleExceptionMethod(MethodArgumentNotValidException ex) {
+    public ErrorResponse handleExceptionMethod(MethodArgumentNotValidException ex) {
         return new ErrorResponse(
                 HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage());
     }

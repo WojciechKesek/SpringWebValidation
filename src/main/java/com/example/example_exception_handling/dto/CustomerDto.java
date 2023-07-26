@@ -10,6 +10,7 @@ import javax.validation.constraints.*;
 @Builder
 public class CustomerDto {
     @NotNull
+    @Min(0)
     private Long id;
     @Pattern(regexp = "[a-zA-Z]+")
     private String name;
