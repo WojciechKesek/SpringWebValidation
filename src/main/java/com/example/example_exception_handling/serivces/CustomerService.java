@@ -26,9 +26,10 @@ public class CustomerService {
     // CustomerAlreadyExistsException when customer detail
     // already exist
     public String addCustomer(CustomerDto customer) {
-        boolean customerExists = customerRepository.existsById(customer.getId());
+        boolean customerExists = customerRepository.existsByName(customer.getName());
         if (!customerExists) {
             Customer customerNew = new Customer();
+            customerNew.setId(customer.getId());
             customerNew.setName(customer.getName());
             customerNew.setAddress(customer.getAddress());
             customerRepository.save(customerNew);
